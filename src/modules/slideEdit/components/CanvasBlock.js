@@ -6,6 +6,7 @@ import Steps from './Steps'
 import AddText from './toolbarComponents/AddText'
 import AddImage from './toolbarComponents/AddImage'
 import AddShape from './toolbarComponents/AddShape'
+import AddVideo from './toolbarComponents/AddVideo'
 import ChangeTextColor from './toolbarComponents/ChangeTextColor'
 import ChangeTextBackground from './toolbarComponents/ChangeTextBackground'
 import RemoveObject from './toolbarComponents/RemoveObject'
@@ -68,6 +69,11 @@ class CanvasBlock extends Component {
 								canvas={this.canvas}
 								currentSlide={this.props.currentSlide}
 								updateSlide={this.props.updateSlide}
+							/>
+							<AddVideo
+								canvas={this.canvas}
+								currentSlide={this.props.currentSlide}
+								updateSlide={this.props.updateSlide} 
 							/>
 							<AddShape />
 							<ToolbarSeparator style={{

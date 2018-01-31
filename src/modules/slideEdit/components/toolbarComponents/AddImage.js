@@ -8,7 +8,6 @@ class AddImage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			text: false,
 			imagePositionSelect: false
 		}
 
@@ -31,7 +30,7 @@ class AddImage extends Component {
 
 	addImage(x, y){
 		window.fabric.Image.fromURL('http://fabricjs.com/assets/pug_small.jpg', (myImg) => {
- 			var img1 = myImg.set({ left: x, top: y, width: myImg.width / 2, height: myImg.height / 2})
+ 			let img1 = myImg.set({ left: x, top: y, width: myImg.width / 2, height: myImg.height / 2})
  			this.props.canvas.add(img1)
 		})
 		this.setState({imagePositionSelect: !this.state.imagePositionSelect})
