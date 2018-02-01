@@ -16,7 +16,16 @@ class AddImage extends Component {
 		this.imagePosition = this.imagePosition.bind(this)
 	}
 
-	componentDidMount() {
+	// componentDidMount() {
+	// 	this.props.canvas.on('mouse:down', (click) => {
+	// 		if (this.state.imagePositionSelect){
+	// 			this.addImage(click.e.layerX, click.e.layerY)
+	// 			this.setState({imagePositionSelect: false})
+	// 		}
+	// 	})
+	// }
+
+	componentDidUpdate() {
 		this.props.canvas.on('mouse:down', (click) => {
 			if (this.state.imagePositionSelect){
 				this.addImage(click.e.layerX, click.e.layerY)

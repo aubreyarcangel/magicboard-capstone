@@ -19,7 +19,15 @@ class AddText extends Component {
 		this.textPosition = this.textPosition.bind(this)
 	}
 
-	componentDidMount() {
+	// componentDidMount() {
+	// 	this.props.canvas.on('mouse:down', (click) => {
+  // 		if (this.state.textPositionSelect){
+	// 			this.addText(click.e.layerX, click.e.layerY)
+	// 			this.setState({textPositionSelect: false})
+	// 		}
+	// 	})
+	// }
+	componentDidUpdate() {
 		this.props.canvas.on('mouse:down', (click) => {
   		if (this.state.textPositionSelect){
 				this.addText(click.e.layerX, click.e.layerY)

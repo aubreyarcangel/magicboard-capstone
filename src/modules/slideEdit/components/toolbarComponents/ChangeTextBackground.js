@@ -17,7 +17,24 @@ class ChangeTextBackground extends Component {
 		this.changeTextBGColor = this.changeTextBGColor.bind(this)
 	}
 
-	componentDidMount() {
+	// componentDidMount() {
+	// 	this.props.canvas.on('selection:created', (event) => {
+	// 		if (event.target.text) {
+	// 			this.setState({textBGColor: event.target.textBackgroundColor})
+	// 		}
+	// 		if (event.target && event.target._objects) {
+	// 			let decider = event.target._objects[0]
+	// 			this.setState({textBGColor: decider.textBackgroundColor})
+	// 		}
+	// 	})
+	// 	this.props.canvas.on('selection:updated', (event) => {
+	// 		if (event.target.text) {
+	// 			this.setState({textBGColor: event.target.textBackgroundColor})
+	// 		}
+	// 	})
+	// }
+
+	componentDidUpdate() {
 		this.props.canvas.on('selection:created', (event) => {
 			if (event.target.text) {
 				this.setState({textBGColor: event.target.textBackgroundColor})

@@ -22,10 +22,9 @@ class YouTubeDisplay extends Component { // YouTubeDisplay
   }
   
   videoSearch(term) {
-    YTSearch({key: API_KEY, term: term}, (videos) => {
+    YTSearch({key: API_KEY, term: term, maxResults: '8'}, (videos) => {
       this.setState({ 
-        videos: videos,
-        // selectedVideo: videos[0]
+        videos: videos
        });
     });
 

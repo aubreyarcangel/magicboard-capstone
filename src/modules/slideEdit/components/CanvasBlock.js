@@ -11,7 +11,7 @@ import ChangeTextBackground from './toolbarComponents/ChangeTextBackground'
 import RemoveObject from './toolbarComponents/RemoveObject'
 import EditLayers from './toolbarComponents/EditLayers'
 import EditText from './toolbarComponents/EditText'
-
+import ReactOverlay from './ReactOverlay'
 import Icon from 'react-icons-kit'
 import { socialYoutube } from 'react-icons-kit/typicons/socialYoutube'
 
@@ -23,19 +23,41 @@ class CanvasBlock extends Component {
 		this.saveSlide = this.saveSlide.bind(this)
 		this.updateSlide = this.updateSlide.bind(this)
 		this.toggleCanvas = this.toggleCanvas.bind(this)
+		this.toggleYoutube = this.toggleYoutube.bind(this)
 		this.state = {
-			canvas: true
+			canvas: true,
+			youtube: false
 		}
 	}
 	toggleCanvas(){
 		this.setState({canvas: !this.state.canvas})
+	}
+	toggleYoutube(){
+		this.setState({youtube: !this.state.youtube})
 	}
 	componentDidUpdate(prevProps) {
 		if (!prevProps.currentSlide || prevProps.currentSlideIndex !== this.props.currentSlideIndex) {
 			this.canvas.loadFromJSON(this.props.currentSlide, this.canvas.renderAll.bind(this.canvas))
 			this.canvas.renderAll()
 		}
-  }
+	}
+	componentWillMount() {
+		// const width = this.block.clientWidth
+		// const scale = width/900
+		// this.canvas = new window.fabric.Canvas('slideCanvas')
+		// this.canvas.backgroundColor="white"
+		// this.canvas.setDimensions({
+    //     "width": this.canvas.getWidth() * scale,
+    //     "height": this.canvas.getHeight() * scale
+    // })
+		// this.canvas.loadFromJSON(this.props.currentSlide, this.canvas.renderAll.bind(this.canvas))
+		// this.canvas.setZoom(scale);
+		// this.canvas.renderAll()
+		// this.canvas.on('object:added', ()=>this.updateSlide('added'))
+		// this.canvas.on('object:removed', ()=>this.updateSlide('removed'))
+		// this.canvas.on('object:modified', ()=>this.updateSlide('modded'))
+	}
+
 	componentDidMount() {
 		const width = this.block.clientWidth
 		const scale = width/900
@@ -64,6 +86,7 @@ class CanvasBlock extends Component {
 	}
 
 	render() {
+		console.log("------------------------>",this.canvas)
 		const { slides, deleteSlide, addSlide, changeSlide,
 			currentSlideIndex, updateSlide, getToolsDispatcher,lesson} = this.props
 		return (
@@ -74,7 +97,6 @@ class CanvasBlock extends Component {
 					flexDirection: 'column',
 					background: '#ccc'
 				}}>
-				{ !this.canvas || !this.props.currentSlide ? null :
 					<Toolbar style={{
 							background: '#fafafa',
 							boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 4px'
@@ -91,7 +113,7 @@ class CanvasBlock extends Component {
 								updateSlide={this.props.updateSlide}
 							/>
 							<AddShape />
-							<Icon icon={socialYoutube} toggled={this.state.canvas} onClick={this.toggleCanvas} label="Simple" />
+							<Icon icon={socialYoutube} onClick={this.toggleYoutube} label="youtube-search" />
 							<ToolbarSeparator style={{
 								marginRight: '10px',
 								marginLeft: '10px'}}
@@ -114,10 +136,11 @@ class CanvasBlock extends Component {
 							<EditLayers canvas={this.canvas} />
 						</ToolbarGroup>
 						<ToolbarGroup lastChild={true}>
+							<Toggle toggled={this.state.canvas} onToggle={this.toggleCanvas} label="Simple" />
 							<RemoveObject canvas={this.canvas}/>
 						</ToolbarGroup>
 					</Toolbar>
-				}
+				
 					<div style={{display: 'flex'}}>
 						<div style={{
 							width: '200px',
@@ -149,8 +172,13 @@ class CanvasBlock extends Component {
 							flexDirection: 'column'}}
 						>
 							<canvas  id="fabricTest" width="900" height="550" />
-							<div style={{zIndex: this.state.canvas ? -5000 : 5000, position: 'absolute', background: "white", top: 0, left: 0, width: this.block ? this.block.clientWidth : "0px", height: this.block ? this.block.clientHeight : "0px"}}>
-								<YouTubeOverlay toggleCanvas={this.toggleCanvas} canvas={this.state.canvas}/>
+							{/* Multimedia Overlay */}
+							<div style={{zIndex: this.state.canvas ? -5000 : 5000, position: 'absolute', background: "red", top: 0, left: 0, width: this.block ? this.block.clientWidth : "0px", height: this.block ? this.block.clientHeight : "0px"}}>
+								<ReactOverlay toggleCanvas={this.toggleCanvas} canvas={this.state.canvas}/>
+							</div>
+							{/* YouTube Search Overlay */}
+							<div style={{zIndex: !this.state.youtube ? -5001 : 5001, position: 'absolute', background: "white", top: 0, left: 0, width: this.block ? this.block.clientWidth : "0px", height: this.block ? this.block.clientHeight : "0px"}}>
+								<YouTubeOverlay toggleYoutube={this.toggleYoutube} canvas={this.state.canvas}/>
 							</div>
 							{/* <div style={{
 								height: '70px',

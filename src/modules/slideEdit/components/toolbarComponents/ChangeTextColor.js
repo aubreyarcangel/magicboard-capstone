@@ -18,7 +18,24 @@ class ChangeTextColor extends Component {
 		this.changeColor = this.changeColor.bind(this)
 	}
 
-	componentDidMount() {
+	// componentDidMount() {
+	// 	this.props.canvas.on('selection:created', (event) => {
+	// 		if (event.target.text) {
+	// 			this.setState({textColor: event.target.fill})
+	// 		}
+	// 		if (event.target && event.target._objects) {
+	// 			let decider = event.target._objects[0];
+	// 			this.setState({textColor: decider.fill})
+	// 		}
+	// 	})
+	// 	this.props.canvas.on('selection:updated', (event) => {
+	// 		if (event.target.text) {
+	// 			this.setState({textColor: event.target.fill})
+	// 		}
+	// 	})
+	// }
+
+	componentDidUpdate() {
 		this.props.canvas.on('selection:created', (event) => {
 			if (event.target.text) {
 				this.setState({textColor: event.target.fill})
