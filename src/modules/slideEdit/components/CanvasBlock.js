@@ -149,6 +149,9 @@ class CanvasBlock extends Component {
 							flexDirection: 'column'}}
 						>
 							<canvas  id="fabricTest" width="900" height="550" />
+							<div id='overlay' style={{position: 'absolute', background: "red", top: 0, left: 0, width: this.block ? this.block.clientWidth : "0px", height: this.block ? this.block.clientHeight : "0px"}}>
+								Hello
+							</div>
 							<div style={{zIndex: this.state.canvas ? -5000 : 5000, position: 'absolute', background: "white", top: 0, left: 0, width: this.block ? this.block.clientWidth : "0px", height: this.block ? this.block.clientHeight : "0px"}}>
 								<YouTubeOverlay toggleCanvas={this.toggleCanvas} canvas={this.state.canvas}/>
 							</div>

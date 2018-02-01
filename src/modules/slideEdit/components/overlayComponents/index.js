@@ -6,6 +6,7 @@ import VideoList from './YouTubeDisplay/video_list';
 import VideoDetail from './YouTubeDisplay/video_detail';
 import config from '../../../../config'
 import SearchBar from './YouTubeDisplay/search_bar';
+import {RaisedButton} from 'material-ui';
 
 let API_KEY = config.API_KEY
 
@@ -47,6 +48,8 @@ class YouTubeDisplay extends Component { // YouTubeDisplay
             onVideoSelect={selectedVideo => this.setState({selectedVideo})} 
             videos={this.state.videos} />
         }
+
+        <RaisedButton label="Select" onClick={() => {console.log(this.state.selectedVideo)}} />
       </div>
     );
   }
