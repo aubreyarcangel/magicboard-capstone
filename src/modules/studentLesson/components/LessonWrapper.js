@@ -38,23 +38,23 @@ class LessonWrapper extends Component {
 		this.canvas.loadFromJSON(this.props.currentSlide, this.canvas.renderAll.bind(this.canvas));
 		this.canvas.setZoom(scale);
 		this.canvas.renderAll();
-		if (this.props.currentSlide.youtubeVideo.videoId) {
-			const opts = {
-				// this is where height and width will go for YT student view
-				playerVars: {
-					controls: 0,
-					rel: 0,
-					disablekb: 0,
-					enablejsapi: 1,
-					showinfo: 0
-					// 'fs' : 0
-				}
-			}
+		// if (this.props.currentSlide.youtubeVideo.videoId) {
+		// 	const opts = {
+		// 		// this is where height and width will go for YT student view
+		// 		playerVars: {
+		// 			controls: 0,
+		// 			rel: 0,
+		// 			disablekb: 0,
+		// 			enablejsapi: 1,
+		// 			showinfo: 0
+		// 			// 'fs' : 0
+		// 		}
+		// 	}
 		// 	const videoId = this.props.currentSlide.youtubeVideo.videoId;
 		// 	ReactDOM.render(<YouTube videoId={videoId} onReady={this.onReady} opts={opts}></YouTube>, document.getElementById('video-overlay'))
 		// } else {
 		// 	ReactDOM.unmountComponentAtNode(document.getElementById('video-overlay'))
-		}
+		// }
 	}
 	
 	componentDidUpdate(prevProps){
