@@ -65,6 +65,8 @@ class LessonWrapper extends Component {
 			this.canvas.loadFromJSON(this.props.currentSlide, this.canvas.renderAll.bind(this.canvas));
 			this.canvas.renderAll();
 		}
+		const currentDisplayObject = this.props.displayObject.find(display=>display.id === this.props.currentSlide.id)
+		console.log('this is the current display object',currentDisplayObject)
 		if (this.props.currentSlide.youtubeVideo.videoId) {
 			const opts = {
 				// this is where height and width will go for YT student view
@@ -83,7 +85,7 @@ class LessonWrapper extends Component {
 				ReactDOM.render(<YouTube videoId={videoId} opts={opts} onReady={this.onReady} ></YouTube>, document.getElementById('video-overlay'))
 			} else {
 				const player = this.state.YTPlayer
-				const currentDisplayObject = this.props.displayObject.find(display=>display.id === this.props.currentSlide.id)
+				// const currentDisplayObject = this.props.displayObject.find(display=>display.id === this.props.currentSlide.id)
 				player.seekTo(currentDisplayObject.YouTube.YTObj.time)
 				switch (currentDisplayObject.YouTube.YTObj.data) {
 					case 1:
@@ -104,6 +106,7 @@ class LessonWrapper extends Component {
 
 	onReady(event) {
 		this.setState({YTPlayer: event.target})
+		console.log('STATE AFTER IT IS SET IN ONREADY', this.state)
 	}
 
 	render() {
