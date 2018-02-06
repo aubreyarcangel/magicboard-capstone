@@ -38,8 +38,6 @@ class LessonWrapper extends Component {
 		this.canvas.loadFromJSON(this.props.currentSlide, this.canvas.renderAll.bind(this.canvas));
 		this.canvas.setZoom(scale);
 		this.canvas.renderAll();
-		console.log(this.props.currentSlide.youtubeVideo.YTObj)
-		console.log(this.props)
 		if (this.props.currentSlide.youtubeVideo.videoId) {
 			const opts = {
 				// this is where height and width will go for YT student view
